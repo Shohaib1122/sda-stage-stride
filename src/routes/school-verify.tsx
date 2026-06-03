@@ -20,6 +20,7 @@ function Verify() {
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  if (!sda.isHydrated) return <PortalLoading />;
   if (!school) return <Navigate to="/schools" />;
 
   function submit() {
@@ -71,4 +72,8 @@ function Verify() {
       </FooterBar>
     </div>
   );
+}
+
+function PortalLoading() {
+  return <div className="min-h-screen bg-background" />;
 }

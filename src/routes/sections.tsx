@@ -25,6 +25,7 @@ function Sections() {
   const school = currentSchool(sda.schoolId);
   const [sel, setSel] = useState<string | null>(sda.section);
 
+  if (!sda.isHydrated) return <PortalLoading />;
   if (!school || !sda.schoolVerified) return <Navigate to="/schools" />;
 
   function next() {
@@ -83,4 +84,8 @@ function Sections() {
       </FooterBar>
     </div>
   );
+}
+
+function PortalLoading() {
+  return <div className="min-h-screen bg-background" />;
 }
