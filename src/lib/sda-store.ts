@@ -85,15 +85,15 @@ function writeState(s: State) {
 }
 
 const listeners = new Set<() => void>();
-let memory: State | null = null;
+let memory: State = initial;
+let hydrated = false;
 
 function getState(): State {
-  if (memory === null) memory = readState();
   return memory;
 }
 
 function setState(updater: (s: State) => State) {
-  memory = updater(getState());
+  memory = updater(memory);
   writeState(memory);
   listeners.forEach((l) => l());
 }
@@ -103,8 +103,11 @@ export function useSDA() {
   useEffect(() => {
     const l = () => force((n) => n + 1);
     listeners.add(l);
-    // Hydrate from storage on mount (SSR-safe)
-    memory = readState();
+    // Hydrate from storage on mount (after SSR/first render to avoid mismatch)
+    if (!hydrated) {
+      hydrated = true;
+      memory = readState();
+    }
     force((n) => n + 1);
     return () => {
       listeners.delete(l);
