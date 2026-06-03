@@ -13,7 +13,11 @@ import { Route as SectionsRouteImport } from './routes/sections'
 import { Route as SchoolsRouteImport } from './routes/schools'
 import { Route as SchoolVerifyRouteImport } from './routes/school-verify'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MonthRouteImport } from './routes/month'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SectionsRoute = SectionsRouteImport.update({
@@ -36,9 +40,29 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MonthRoute = MonthRouteImport.update({
   id: '/month',
   path: '/month',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,7 +73,11 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/analytics': typeof AnalyticsRoute
+  '/dashboard': typeof DashboardRoute
   '/month': typeof MonthRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/school-verify': typeof SchoolVerifyRoute
   '/schools': typeof SchoolsRoute
@@ -57,7 +85,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/analytics': typeof AnalyticsRoute
+  '/dashboard': typeof DashboardRoute
   '/month': typeof MonthRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/school-verify': typeof SchoolVerifyRoute
   '/schools': typeof SchoolsRoute
@@ -66,7 +98,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/analytics': typeof AnalyticsRoute
+  '/dashboard': typeof DashboardRoute
   '/month': typeof MonthRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/school-verify': typeof SchoolVerifyRoute
   '/schools': typeof SchoolsRoute
@@ -76,17 +112,35 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/analytics'
+    | '/dashboard'
     | '/month'
+    | '/profile'
     | '/register'
     | '/school-verify'
     | '/schools'
     | '/sections'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/month' | '/register' | '/school-verify' | '/schools' | '/sections'
+  to:
+    | '/'
+    | '/admin'
+    | '/analytics'
+    | '/dashboard'
+    | '/month'
+    | '/profile'
+    | '/register'
+    | '/school-verify'
+    | '/schools'
+    | '/sections'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/analytics'
+    | '/dashboard'
     | '/month'
+    | '/profile'
     | '/register'
     | '/school-verify'
     | '/schools'
@@ -95,7 +149,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  DashboardRoute: typeof DashboardRoute
   MonthRoute: typeof MonthRoute
+  ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
   SchoolVerifyRoute: typeof SchoolVerifyRoute
   SchoolsRoute: typeof SchoolsRoute
@@ -132,11 +190,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/month': {
       id: '/month'
       path: '/month'
       fullPath: '/month'
       preLoaderRoute: typeof MonthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -151,7 +237,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  DashboardRoute: DashboardRoute,
   MonthRoute: MonthRoute,
+  ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
   SchoolVerifyRoute: SchoolVerifyRoute,
   SchoolsRoute: SchoolsRoute,
