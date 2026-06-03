@@ -1,5 +1,5 @@
 // Lightweight client-side store for the SDA portal (mock data, localStorage-backed).
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 export type Role = "admin" | "instructor" | "principal";
 
@@ -88,33 +88,47 @@ const listeners = new Set<() => void>();
 let memory: State = initial;
 let hydrated = false;
 
-function getState(): State {
-  return memory;
+type Snapshot = State & { isHydrated: boolean };
+const serverSnapshot: Snapshot = { ...initial, isHydrated: false };
+let snapshot: Snapshot = serverSnapshot;
+
+function emit() {
+  snapshot = { ...memory, isHydrated: hydrated };
+  listeners.forEach((l) => l());
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot(): Snapshot {
+  return snapshot;
+}
+
+function getServerSnapshot(): Snapshot {
+  return serverSnapshot;
 }
 
 function setState(updater: (s: State) => State) {
   memory = updater(memory);
   writeState(memory);
-  listeners.forEach((l) => l());
+  emit();
+}
+
+function hydrateState() {
+  if (hydrated) return;
+  memory = readState();
+  hydrated = true;
+  emit();
 }
 
 export function useSDA() {
-  const [, force] = useState(0);
-  useEffect(() => {
-    const l = () => force((n) => n + 1);
-    listeners.add(l);
-    // Hydrate from storage on mount (after SSR/first render to avoid mismatch)
-    if (!hydrated) {
-      hydrated = true;
-      memory = readState();
-    }
-    force((n) => n + 1);
-    return () => {
-      listeners.delete(l);
-    };
-  }, []);
+  const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  const state = getState();
+  useEffect(() => {
+    hydrateState();
+  }, []);
 
   return {
     ...state,
