@@ -38,6 +38,7 @@ function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sda.schoolId, sda.section, sda.month]);
 
+  if (!sda.isHydrated) return <PortalLoading />;
   if (!school || !sda.section || !sda.month) return <Navigate to="/schools" />;
 
   const role = sda.role;
@@ -178,4 +179,8 @@ function Dashboard() {
 
 function escapeHtml(s: string) {
   return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] || c));
+}
+
+function PortalLoading() {
+  return <div className="min-h-screen bg-background" />;
 }
