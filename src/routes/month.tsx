@@ -21,6 +21,7 @@ function MonthSelect() {
   const school = currentSchool(sda.schoolId);
   const [m, setM] = useState<string | null>(sda.month);
 
+  if (!sda.isHydrated) return <PortalLoading />;
   if (!school || !sda.section) return <Navigate to="/schools" />;
 
   function next() {
@@ -67,4 +68,8 @@ function MonthSelect() {
       </FooterBar>
     </div>
   );
+}
+
+function PortalLoading() {
+  return <div className="min-h-screen bg-background" />;
 }
