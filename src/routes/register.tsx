@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Lock, IdCard } from "lucide-react";
 import { BrandHeader } from "@/components/sda/Header";
+import { BackButton } from "@/components/sda/BackButton";
 import { Button } from "@/components/ui/button";
 import { useSDA } from "@/lib/sda-store";
 import { cn } from "@/lib/utils";
@@ -33,6 +34,7 @@ function Register() {
     <div className="min-h-screen flex flex-col">
       <BrandHeader subtitle="Instructor Registration" />
       <main className="flex-1 mx-auto w-full max-w-md px-4 py-10">
+        <BackButton to="/" label="Back to roles" className="mb-4" />
         <div className="bg-card rounded-3xl border border-border shadow-[var(--shadow-elevated)] p-7 sm:p-9">
           <h2 className="text-xl font-semibold mb-1">First-time registration</h2>
           <p className="text-sm text-muted-foreground mb-7">Please set up your access credentials.</p>

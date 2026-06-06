@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
 import { Stepper } from "@/components/sda/Stepper";
+import { BackButton } from "@/components/sda/BackButton";
 import { FooterBar } from "./schools";
 import { Button } from "@/components/ui/button";
 import { useSDA, currentSchool } from "@/lib/sda-store";
@@ -37,6 +38,7 @@ function Verify() {
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader />
       <main className="flex-1 mx-auto w-full max-w-md px-4 py-8 pb-32">
+        <BackButton to="/schools" label="Back to schools" />
         <Stepper step={2} />
 
         <div className="bg-card rounded-3xl border border-border shadow-[var(--shadow-elevated)] p-7 text-center">

@@ -3,6 +3,7 @@ import {
   Building2, KeyRound, Users, UserCog, BookOpen, LineChart, ArrowRight,
 } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
+import { BackButton } from "@/components/sda/BackButton";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin Dashboard — SDA Portal" }] }),
@@ -23,6 +24,7 @@ function Admin() {
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-8">
+        <BackButton label="Back" className="mb-3" />
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl sm:text-4xl font-semibold">Admin Dashboard</h1>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
 import { Stepper } from "@/components/sda/Stepper";
+import { BackButton } from "@/components/sda/BackButton";
 import { Button } from "@/components/ui/button";
 import { SCHOOLS, useSDA } from "@/lib/sda-store";
 import { cn } from "@/lib/utils";
@@ -27,6 +28,7 @@ function Schools() {
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader />
       <main className="flex-1 mx-auto w-full max-w-6xl px-4 py-8 pb-32">
+        <BackButton to="/" label="Back" />
         <Stepper step={1} />
         <div className="mb-6">
           <h2 className="text-2xl font-semibold">Select a school</h2>

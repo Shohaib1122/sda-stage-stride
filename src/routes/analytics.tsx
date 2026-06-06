@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import { TrendingUp, CheckCircle2, Users, BookOpen } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
+import { BackButton } from "@/components/sda/BackButton";
 
 export const Route = createFileRoute("/analytics")({
   head: () => ({ meta: [{ title: "Analytics — SDA Portal" }] }),
@@ -38,6 +39,7 @@ function Analytics() {
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-8">
+        <BackButton label="Back" className="mb-2" />
         <div className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-semibold">Analytics</h1>
           <p className="text-muted-foreground text-sm mt-1">Performance overview across schools and sections.</p>
