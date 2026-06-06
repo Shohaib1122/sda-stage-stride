@@ -15,9 +15,9 @@ export const Route = createFileRoute("/")({
 });
 
 const roles: Array<{ id: Role; label: string; desc: string; icon: typeof Shield }> = [
-  { id: "admin", label: "Admin", desc: "Full system access & management", icon: Shield },
-  { id: "instructor", label: "Instructor", desc: "Track and edit syllabus progress", icon: GraduationCap },
   { id: "principal", label: "Principal / Administrative", desc: "View progress & export reports", icon: Briefcase },
+  { id: "instructor", label: "Instructor", desc: "Track and edit syllabus progress", icon: GraduationCap },
+  { id: "admin", label: "Admin", desc: "Full system access & management", icon: Shield },
 ];
 
 function RoleSelect() {
