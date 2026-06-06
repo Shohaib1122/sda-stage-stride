@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { LogOut, Phone, IdCard, Building2, Shield } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
+import { BackButton } from "@/components/sda/BackButton";
 import { Button } from "@/components/ui/button";
 import { useSDA, SCHOOLS } from "@/lib/sda-store";
 
@@ -18,6 +19,7 @@ function Profile() {
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="mx-auto w-full max-w-3xl px-4 py-8">
+        <BackButton label="Back" className="mb-3" />
         <div className="bg-card rounded-3xl border border-border shadow-[var(--shadow-elevated)] overflow-hidden">
           <div className="bg-sidebar text-sidebar-foreground p-7 flex items-center gap-5">
             <div className="size-20 rounded-2xl bg-sidebar-primary text-sidebar-primary-foreground grid place-items-center text-2xl font-semibold">

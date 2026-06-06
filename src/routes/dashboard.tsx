@@ -2,6 +2,7 @@ import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Edit3, Save, Download, Plus, Trash2, X } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
+import { BackButton } from "@/components/sda/BackButton";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useSDA, currentSchool, type SyllabusRow } from "@/lib/sda-store";
@@ -93,6 +94,7 @@ function Dashboard() {
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader />
       <main className="flex-1 mx-auto w-full max-w-[1400px] px-4 sm:px-6 py-6">
+        <BackButton to="/month" label="Back" className="mb-2" />
         <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
           <div>
             <div className="text-xs uppercase tracking-wider text-muted-foreground font-medium">{school.name} • {sda.section}</div>
