@@ -42,8 +42,12 @@ function Verify() {
         <Stepper step={2} />
 
         <div className="bg-card rounded-3xl border border-border shadow-[var(--shadow-elevated)] p-7 text-center">
-          <div className="size-20 mx-auto rounded-3xl bg-secondary grid place-items-center text-5xl mb-4">
-            {school.logo}
+          <div className="size-20 mx-auto rounded-3xl bg-secondary grid place-items-center text-5xl mb-4 overflow-hidden">
+            {school.logo.startsWith("/") || school.logo.startsWith("http") ? (
+              <img src={school.logo} alt={school.name} className="size-full object-contain p-2" />
+            ) : (
+              school.logo
+            )}
           </div>
           <h2 className="text-xl font-semibold">{school.name}</h2>
           <p className="text-sm text-muted-foreground mb-6">Enter the school code to verify access</p>

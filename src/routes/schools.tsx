@@ -53,8 +53,12 @@ function Schools() {
                     <Check className="size-4" />
                   </span>
                 )}
-                <div className="size-14 rounded-2xl bg-secondary grid place-items-center text-3xl mb-4">
-                  {s.logo}
+                <div className="size-14 rounded-2xl bg-secondary grid place-items-center text-3xl mb-4 overflow-hidden">
+                  {s.logo.startsWith("/") || s.logo.startsWith("http") ? (
+                    <img src={s.logo} alt={s.name} className="size-full object-contain p-1" />
+                  ) : (
+                    s.logo
+                  )}
                 </div>
                 <h3 className="font-semibold text-base">{s.name}</h3>
                 <p className="text-xs text-muted-foreground mt-1">{s.sections.length} active sections</p>
