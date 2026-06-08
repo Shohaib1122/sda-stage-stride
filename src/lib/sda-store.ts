@@ -224,12 +224,13 @@ export function useSDA() {
     ...state,
     setRole: (role: Role) => setState((s) => ({ ...s, role })),
     setInstructorId: (id: string) => setState((s) => ({ ...s, instructorId: id })),
-    setSchool: (id: string) => setState((s) => ({ ...s, schoolId: id, schoolVerified: false, section: null, month: null })),
+    setSchool: (id: string) => setState((s) => ({ ...s, schoolId: id, schoolVerified: false, section: null, grade: null, month: null })),
     verifySchool: () => setState((s) => ({ ...s, schoolVerified: true })),
-    setSection: (section: string) => setState((s) => ({ ...s, section })),
+    setSection: (section: string) => setState((s) => ({ ...s, section, grade: null })),
+    setGrade: (grade: string) => setState((s) => ({ ...s, grade })),
     setMonth: (month: string) => setState((s) => ({ ...s, month })),
     getSyllabus: (): SyllabusRow[] => {
-      const key = `${state.schoolId}-${state.section}-${state.month}`;
+      const key = `${state.schoolId}-${state.section}-${state.grade}-${state.month}`;
       if (!state.syllabus[key]) {
         const rows = seedRows(key);
         setState((s) => ({ ...s, syllabus: { ...s.syllabus, [key]: rows } }));
@@ -238,7 +239,7 @@ export function useSDA() {
       return state.syllabus[key];
     },
     saveSyllabus: (rows: SyllabusRow[]) => {
-      const key = `${state.schoolId}-${state.section}-${state.month}`;
+      const key = `${state.schoolId}-${state.section}-${state.grade}-${state.month}`;
       setState((s) => ({ ...s, syllabus: { ...s.syllabus, [key]: rows } }));
     },
     reset: () => setState(() => initial),
