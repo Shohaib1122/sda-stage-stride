@@ -147,11 +147,9 @@ function Dashboard() {
                     {COLS.map((c) => (
                       <td key={c.key} className={cn("align-top px-4 py-2.5 border-b border-border", c.width)}>
                         {editing && canEdit ? (
-                          <textarea
+                          <AutoTextarea
                             value={String(r[c.key] ?? "")}
-                            onChange={(e) => update(r.id, c.key, e.target.value)}
-                            rows={1}
-                            className="w-full bg-transparent outline-none resize-none focus:bg-background rounded-md px-1.5 py-1 -mx-1.5 -my-1 focus:ring-2 focus:ring-success/30 min-h-[28px]"
+                            onChange={(v) => update(r.id, c.key, v)}
                           />
                         ) : (
                           <div className="whitespace-pre-wrap break-words leading-relaxed">{String(r[c.key] ?? "") || <span className="text-muted-foreground">—</span>}</div>
