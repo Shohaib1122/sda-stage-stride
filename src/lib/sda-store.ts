@@ -21,8 +21,9 @@ export const SCHOOLS: School[] = [
 ];
 
 export const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "June 2026", "July 2026", "August 2026", "September 2026",
+  "October 2026", "November 2026", "December 2026",
+  "January 2027", "February 2027", "March 2027",
 ];
 
 export interface SyllabusRow {
