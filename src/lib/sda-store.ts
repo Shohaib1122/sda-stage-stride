@@ -62,13 +62,12 @@ const initial: State = {
   syllabus: {},
 };
 
-const seedRows = (key: string): SyllabusRow[] => [
-  { id: key + "-1", grade: "Grade 1", date: "2025-06-04", warmup: "Stretching & breathing", followUp: "Posture drill", choreography: "Intro to Bharatanatyam", song: "Alarippu", skill: "Adavu basics", other: "—", trainer: "Riya Sharma", remarks: "Good engagement" },
-  { id: key + "-2", grade: "Grade 2", date: "2025-06-06", warmup: "Cardio warm-up", followUp: "Footwork review", choreography: "Folk routine", song: "Genda Phool", skill: "Rhythm sync", other: "—", trainer: "Arjun Mehta", remarks: "" },
-  { id: key + "-3", grade: "Grade 3", date: "2025-06-09", warmup: "Joint mobility", followUp: "Hand gestures", choreography: "Contemporary piece", song: "Kun Faya Kun", skill: "Expression work", other: "—", trainer: "Riya Sharma", remarks: "Practice needed" },
-  { id: key + "-4", grade: "Grade 4", date: "2025-06-11", warmup: "Dynamic stretch", followUp: "Spins & turns", choreography: "Hip-hop basics", song: "Lean On", skill: "Isolation", other: "—", trainer: "Neha Kapoor", remarks: "Excellent" },
-  { id: key + "-5", grade: "Grade 5", date: "2025-06-13", warmup: "Pilates flow", followUp: "Group sync", choreography: "Semi-classical", song: "Bairi Piya", skill: "Mudra accuracy", other: "—", trainer: "Arjun Mehta", remarks: "" },
-];
+const seedRows = (key: string): SyllabusRow[] =>
+  Array.from({ length: 5 }, (_, i) => ({
+    id: `${key}-${i + 1}`,
+    grade: "", date: "", warmup: "", followUp: "", choreography: "",
+    song: "", skill: "", other: "", trainer: "", remarks: "",
+  }));
 
 function readState(): State {
   if (typeof window === "undefined") return initial;
