@@ -16,11 +16,11 @@ export function BrandHeader({ subtitle }: { subtitle?: string }) {
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-5 flex flex-col items-center text-center gap-1">
-        <div className="size-12 rounded-2xl bg-primary text-primary-foreground grid place-items-center font-bold text-xl shadow-[var(--shadow-soft)]">
-          SDA
+        <div className="size-16 rounded-2xl overflow-hidden bg-background grid place-items-center shadow-[var(--shadow-soft)]">
+          <img src={saibaLogo.url} alt="Saiba Dance Academy" className="size-full object-contain" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">Saiba Dance Academy</h1>
-        <p className="text-sm text-muted-foreground">{subtitle ?? "Management Portal"}</p>
+        <p className="text-sm text-muted-foreground">{subtitle ?? "Saiba's Portal"}</p>
       </div>
     </header>
   );
@@ -35,11 +35,11 @@ export function AppHeader() {
     <header className="sticky top-0 z-40 bg-sidebar text-sidebar-foreground border-b border-sidebar-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link to="/dashboard" className="flex items-center gap-3 min-w-0">
-          <div className="size-9 rounded-xl bg-sidebar-primary text-sidebar-primary-foreground grid place-items-center font-bold text-sm">
-            SDA
+          <div className="size-10 rounded-xl overflow-hidden bg-background grid place-items-center">
+            <img src={saibaLogo.url} alt="Saiba Dance Academy" className="size-full object-contain" />
           </div>
           <div className="hidden sm:flex flex-col leading-tight min-w-0">
-            <span className="text-sm font-semibold truncate">SDA Management Portal</span>
+            <span className="text-sm font-semibold truncate">Saiba's Portal</span>
             {school && (
               <span className="text-xs text-sidebar-foreground/70 truncate">
                 {school.name}{sda.month ? ` • ${sda.month}` : ""}
