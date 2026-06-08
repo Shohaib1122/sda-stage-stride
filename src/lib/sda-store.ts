@@ -136,8 +136,9 @@ interface State {
   schoolId: string | null;
   schoolVerified: boolean;
   section: string | null;
+  grade: string | null;
   month: string | null;
-  syllabus: Record<string, SyllabusRow[]>; // key: schoolId-section-month
+  syllabus: Record<string, SyllabusRow[]>; // key: schoolId-section-grade-month
 }
 
 const initial: State = {
@@ -146,6 +147,7 @@ const initial: State = {
   schoolId: null,
   schoolVerified: false,
   section: null,
+  grade: null,
   month: null,
   syllabus: {},
 };
