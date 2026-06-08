@@ -3,12 +3,17 @@ import { useEffect, useSyncExternalStore } from "react";
 
 export type Role = "admin" | "instructor" | "principal";
 
+export interface SchoolSection {
+  name: string;
+  grades: string[];
+}
+
 export interface School {
   id: string;
   name: string;
   code: string;
   logo: string; // image URL or emoji fallback
-  sections: Array<"Pre Primary" | "Primary" | "Secondary">;
+  sections: SchoolSection[];
 }
 
 import school1 from "@/assets/schools/school_1.jpg.asset.json";
@@ -22,20 +27,85 @@ import school8 from "@/assets/schools/school_8.jpg.asset.json";
 import school10 from "@/assets/schools/school_10.jpg.asset.json";
 import school11 from "@/assets/schools/school_11.jpg.asset.json";
 
-const ALL_SECTIONS: Array<"Pre Primary" | "Primary" | "Secondary"> = ["Pre Primary", "Primary", "Secondary"];
+const TINY = ["Playgroup", "Nursery", "Junior KG", "Senior KG"];
+const DEFAULT_PRIMARY = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"];
+const DEFAULT_SECONDARY = ["Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"];
 
 export const SCHOOLS: School[] = [
-  { id: "kothari", name: "Kothari International School", code: "KIS2024", logo: school1.url, sections: ALL_SECTIONS },
-  { id: "stmarys", name: "St. Mary's High School (Kalina)", code: "SMK2024", logo: school2.url, sections: ["Primary", "Secondary"] },
-  { id: "immaculate", name: "Immaculate Girls' High School (Kalina)", code: "IGH2024", logo: school3.url, sections: ["Primary", "Secondary"] },
-  { id: "surya", name: "Surya Vidyalaya (CBSE)", code: "SVC2024", logo: school4.url, sections: ALL_SECTIONS },
-  { id: "stjohn", name: "St. John XXIII High School", code: "SJH2024", logo: school5.url, sections: ["Primary", "Secondary"] },
-  { id: "stmichael", name: "St. Michael (Mahim)", code: "SMM2024", logo: school6.url, sections: ["Primary", "Secondary"] },
-  { id: "eurokids", name: "Euro Kids (Bandra)", code: "EKB2024", logo: school7.url, sections: ["Pre Primary"] },
-  { id: "orion", name: "Orion International School (Vile Parle)", code: "OIS2024", logo: school8.url, sections: ALL_SECTIONS },
-  { id: "stcatherine", name: "St. Catherine of Siena School", code: "SCS2024", logo: "🎓", sections: ["Primary", "Secondary"] },
-  { id: "podarwest", name: "Podar Jumbo Kids (Santacruz West)", code: "PJW2024", logo: school10.url, sections: ["Pre Primary"] },
-  { id: "podareast", name: "Podar Jumbo Kids (Santacruz East)", code: "PJE2024", logo: school11.url, sections: ["Pre Primary"] },
+  {
+    id: "kothari", name: "Kothari International School", code: "KIS2024", logo: school1.url,
+    sections: [
+      { name: "Tiny Toes", grades: TINY },
+      { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
+      { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
+      { name: "Elite Performers", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
+    ],
+  },
+  {
+    id: "stmarys", name: "St. Mary's High School (Kalina)", code: "SMK2024", logo: school2.url,
+    sections: [
+      { name: "Primary", grades: DEFAULT_PRIMARY },
+      { name: "Secondary", grades: DEFAULT_SECONDARY },
+    ],
+  },
+  {
+    id: "immaculate", name: "Immaculate Girls' High School (Kalina)", code: "IGH2024", logo: school3.url,
+    sections: [
+      { name: "Tiny Toes", grades: TINY },
+      { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
+      { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
+      { name: "Elite Performers", grades: ["Grade 6", "Grade 7"] },
+    ],
+  },
+  {
+    id: "surya", name: "Surya Vidyalaya (CBSE)", code: "SVC2024", logo: school4.url,
+    sections: [
+      { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
+      { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
+      { name: "Elite Performers", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
+    ],
+  },
+  {
+    id: "stjohn", name: "St. John XXIII High School", code: "SJH2024", logo: school5.url,
+    sections: [
+      { name: "Primary", grades: DEFAULT_PRIMARY },
+      { name: "Secondary", grades: DEFAULT_SECONDARY },
+    ],
+  },
+  {
+    id: "stmichael", name: "St. Michael (Mahim)", code: "SMM2024", logo: school6.url,
+    sections: [
+      { name: "Primary Section", grades: ["Grade 1", "Grade 2", "Grade 3", "Grade 4"] },
+      { name: "Secondary Section", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
+    ],
+  },
+  {
+    id: "eurokids", name: "Euro Kids (Bandra)", code: "EKB2024", logo: school7.url,
+    sections: [{ name: "Tiny Tots", grades: TINY }],
+  },
+  {
+    id: "orion", name: "Orion International School (Vile Parle)", code: "OIS2024", logo: school8.url,
+    sections: [
+      { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
+      { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
+      { name: "Elite Performers", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
+    ],
+  },
+  {
+    id: "stcatherine", name: "St. Catherine of Siena School", code: "SCS2024", logo: "🎓",
+    sections: [
+      { name: "Primary", grades: DEFAULT_PRIMARY },
+      { name: "Secondary", grades: DEFAULT_SECONDARY },
+    ],
+  },
+  {
+    id: "podarwest", name: "Podar Jumbo Kids (Santacruz West)", code: "PJW2024", logo: school10.url,
+    sections: [{ name: "Tiny Tots", grades: TINY }],
+  },
+  {
+    id: "podareast", name: "Podar Jumbo Kids (Santacruz East)", code: "PJE2024", logo: school11.url,
+    sections: [{ name: "Tiny Tots", grades: TINY }],
+  },
 ];
 
 export const MONTHS = [
