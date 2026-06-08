@@ -184,3 +184,22 @@ function escapeHtml(s: string) {
 function PortalLoading() {
   return <div className="min-h-screen bg-background" />;
 }
+
+function AutoTextarea({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  }, [value]);
+  return (
+    <textarea
+      ref={ref}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      rows={1}
+      className="w-full bg-transparent outline-none resize-none focus:bg-background rounded-md px-1.5 py-1 -mx-1.5 -my-1 focus:ring-2 focus:ring-success/30 min-h-[28px] overflow-hidden"
+    />
+  );
+}
