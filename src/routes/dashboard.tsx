@@ -1,5 +1,5 @@
 import { createFileRoute, Navigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Edit3, Save, Download, Plus, Trash2, X } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
 import { BackButton } from "@/components/sda/BackButton";
