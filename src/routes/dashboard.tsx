@@ -1,5 +1,5 @@
 import { createFileRoute, Navigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Edit3, Save, Download, Plus, Trash2, X } from "lucide-react";
 import { AppHeader } from "@/components/sda/Header";
 import { BackButton } from "@/components/sda/BackButton";
@@ -147,11 +147,9 @@ function Dashboard() {
                     {COLS.map((c) => (
                       <td key={c.key} className={cn("align-top px-4 py-2.5 border-b border-border", c.width)}>
                         {editing && canEdit ? (
-                          <textarea
+                          <AutoTextarea
                             value={String(r[c.key] ?? "")}
-                            onChange={(e) => update(r.id, c.key, e.target.value)}
-                            rows={1}
-                            className="w-full bg-transparent outline-none resize-none focus:bg-background rounded-md px-1.5 py-1 -mx-1.5 -my-1 focus:ring-2 focus:ring-success/30 min-h-[28px]"
+                            onChange={(v) => update(r.id, c.key, v)}
                           />
                         ) : (
                           <div className="whitespace-pre-wrap break-words leading-relaxed">{String(r[c.key] ?? "") || <span className="text-muted-foreground">—</span>}</div>
@@ -185,4 +183,23 @@ function escapeHtml(s: string) {
 
 function PortalLoading() {
   return <div className="min-h-screen bg-background" />;
+}
+
+function AutoTextarea({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  }, [value]);
+  return (
+    <textarea
+      ref={ref}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      rows={1}
+      className="w-full bg-transparent outline-none resize-none focus:bg-background rounded-md px-1.5 py-1 -mx-1.5 -my-1 focus:ring-2 focus:ring-success/30 min-h-[28px] overflow-hidden"
+    />
+  );
 }
