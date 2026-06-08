@@ -44,7 +44,7 @@ function MonthSelect() {
               <Calendar className="size-7" />
             </div>
             <h2 className="text-xl font-semibold">{school.name}</h2>
-            <p className="text-sm text-muted-foreground">{sda.section}</p>
+            <p className="text-sm text-muted-foreground">{sda.section}{sda.grade ? ` • ${sda.grade}` : ""}</p>
           </div>
 
           <label className="block">
