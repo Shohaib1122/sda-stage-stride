@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Bell, User, LogOut, LayoutDashboard, BarChart3 } from "lucide-react";
+import saibaLogo from "@/assets/saiba-logo.png.asset.json";
 import { useSDA, currentSchool } from "@/lib/sda-store";
 import { Button } from "@/components/ui/button";
 import {
