@@ -40,7 +40,7 @@ export interface SyllabusRow {
   remarks: string;
 }
 
-const STORAGE_KEY = "sda-portal-state-v1";
+const STORAGE_KEY = "sda-portal-state-v2";
 
 interface State {
   role: Role | null;
