@@ -24,8 +24,7 @@ import school5 from "@/assets/schools/school_5.jpg.asset.json";
 import school6 from "@/assets/schools/school_6.jpg.asset.json";
 import school7 from "@/assets/schools/school_7.jpg.asset.json";
 import school8 from "@/assets/schools/school_8.jpg.asset.json";
-import school10 from "@/assets/schools/school_10.jpg.asset.json";
-import school11 from "@/assets/schools/school_11.jpg.asset.json";
+import podarLogo from "@/assets/schools/podar-jumbo-kids.png.asset.json";
 
 const TINY = ["Playgroup", "Nursery", "Junior KG", "Senior KG"];
 const DEFAULT_PRIMARY = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"];
