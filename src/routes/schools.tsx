@@ -32,7 +32,6 @@ function Schools() {
         <Stepper step={1} />
         <div className="mb-6">
           <h2 className="text-2xl font-semibold">Select a school</h2>
-          <p className="text-muted-foreground text-sm">Choose the partner school you want to work with.</p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

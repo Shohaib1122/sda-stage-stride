@@ -24,8 +24,7 @@ import school5 from "@/assets/schools/school_5.jpg.asset.json";
 import school6 from "@/assets/schools/school_6.jpg.asset.json";
 import school7 from "@/assets/schools/school_7.jpg.asset.json";
 import school8 from "@/assets/schools/school_8.jpg.asset.json";
-import school10 from "@/assets/schools/school_10.jpg.asset.json";
-import school11 from "@/assets/schools/school_11.jpg.asset.json";
+import podarLogo from "@/assets/schools/podar-jumbo-kids.png.asset.json";
 
 const TINY = ["Playgroup", "Nursery", "Junior KG", "Senior KG"];
 const DEFAULT_PRIMARY = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"];
@@ -33,7 +32,7 @@ const DEFAULT_SECONDARY = ["Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10
 
 export const SCHOOLS: School[] = [
   {
-    id: "kothari", name: "Kothari International School", code: "KIS2024", logo: school1.url,
+    id: "kothari", name: "Kothari International School (Panvel)", code: "KIS2024", logo: school1.url,
     sections: [
       { name: "Tiny Toes", grades: TINY },
       { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
@@ -58,7 +57,7 @@ export const SCHOOLS: School[] = [
     ],
   },
   {
-    id: "surya", name: "Surya Vidyalaya (CBSE)", code: "SVC2024", logo: school4.url,
+    id: "surya", name: "Surya Vidyalaya (Vile Parle)", code: "SVC2024", logo: school4.url,
     sections: [
       { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
       { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
@@ -66,7 +65,7 @@ export const SCHOOLS: School[] = [
     ],
   },
   {
-    id: "stjohn", name: "St. John XXIII High School", code: "SJH2024", logo: school5.url,
+    id: "stjohn", name: "St. John XXIII High School (Virar)", code: "SJH2024", logo: school5.url,
     sections: [
       { name: "Primary", grades: DEFAULT_PRIMARY },
       { name: "Secondary", grades: DEFAULT_SECONDARY },
@@ -92,18 +91,18 @@ export const SCHOOLS: School[] = [
     ],
   },
   {
-    id: "stcatherine", name: "St. Catherine of Siena School", code: "SCS2024", logo: "🎓",
+    id: "stcatherine", name: "St. Catherine of Siena School (Bandra)", code: "SCS2024", logo: "🎓",
     sections: [
       { name: "Primary", grades: DEFAULT_PRIMARY },
       { name: "Secondary", grades: DEFAULT_SECONDARY },
     ],
   },
   {
-    id: "podarwest", name: "Podar Jumbo Kids (Santacruz West)", code: "PJW2024", logo: school10.url,
+    id: "podarwest", name: "Podar Jumbo Kids (Santacruz West)", code: "PJW2024", logo: podarLogo.url,
     sections: [{ name: "Tiny Tots", grades: TINY }],
   },
   {
-    id: "podareast", name: "Podar Jumbo Kids (Santacruz East)", code: "PJE2024", logo: school11.url,
+    id: "podareast", name: "Podar Jumbo Kids (Santacruz East)", code: "PJE2024", logo: podarLogo.url,
     sections: [{ name: "Tiny Tots", grades: TINY }],
   },
 ];
