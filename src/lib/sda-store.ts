@@ -64,7 +64,7 @@ export const SCHOOLS: School[] = [
     sections: [
       { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
       { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
-      { name: "Elite Performers", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
+      { name: "Elite Performers", grades: ["Grade 6", "Grade 7"] },
     ],
   },
   {
@@ -89,7 +89,7 @@ export const SCHOOLS: School[] = [
     sections: [
       { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
       { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
-      { name: "Elite Performers", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
+      { name: "Elite Performers", grades: ["Grade 6", "Grade 7"] },
     ],
   },
   {
