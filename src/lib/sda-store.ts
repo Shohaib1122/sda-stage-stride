@@ -70,8 +70,7 @@ export const SCHOOLS: School[] = [
   {
     id: "stjohn", name: "St. John XXIII High School (Virar)", code: "SJH2024", logo: school5.url,
     sections: [
-      { name: "Primary", grades: DEFAULT_PRIMARY },
-      { name: "Secondary", grades: DEFAULT_SECONDARY },
+      { name: "Primary", grades: ["Grade 1", "Grade 2", "Grade 3", "Grade 4"] },
     ],
   },
   {
