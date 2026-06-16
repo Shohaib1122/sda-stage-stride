@@ -30,11 +30,14 @@ const TINY = ["Playgroup", "Nursery", "Junior KG", "Senior KG"];
 const DEFAULT_PRIMARY = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"];
 const DEFAULT_SECONDARY = ["Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"];
 
+const TINY_NO_NURSERY = ["Playgroup", "Junior KG", "Senior KG"];
+const KOTHARI_TINY = ["K1", "K2", "Nursery", "Junior KG", "Senior KG"];
+
 export const SCHOOLS: School[] = [
   {
     id: "kothari", name: "Kothari International School (Panvel)", code: "KIS2024", logo: school1.url,
     sections: [
-      { name: "Tiny Toes", grades: TINY },
+      { name: "Tiny Toes", grades: KOTHARI_TINY },
       { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
       { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
       { name: "Elite Performers", grades: ["Grade 6", "Grade 7", "Grade 8", "Grade 9"] },
@@ -50,7 +53,7 @@ export const SCHOOLS: School[] = [
   {
     id: "immaculate", name: "Immaculate Girls' High School (Kalina)", code: "IGH2024", logo: school3.url,
     sections: [
-      { name: "Tiny Toes", grades: TINY },
+      { name: "Tiny Toes", grades: TINY_NO_NURSERY },
       { name: "Rising Star", grades: ["Grade 1", "Grade 2", "Grade 3"] },
       { name: "Young Performers", grades: ["Grade 4", "Grade 5"] },
       { name: "Elite Performers", grades: ["Grade 6", "Grade 7"] },
@@ -80,7 +83,7 @@ export const SCHOOLS: School[] = [
   },
   {
     id: "eurokids", name: "Euro Kids (Bandra)", code: "EKB2024", logo: school7.url,
-    sections: [{ name: "Tiny Tots", grades: TINY }],
+    sections: [{ name: "Tiny Tots", grades: TINY_NO_NURSERY }],
   },
   {
     id: "orion", name: "Orion International School (Vile Parle)", code: "OIS2024", logo: school8.url,
@@ -99,11 +102,11 @@ export const SCHOOLS: School[] = [
   },
   {
     id: "podarwest", name: "Podar Jumbo Kids (Santacruz West)", code: "PJW2024", logo: podarLogo.url,
-    sections: [{ name: "Tiny Tots", grades: TINY }],
+    sections: [{ name: "Tiny Tots", grades: TINY_NO_NURSERY }],
   },
   {
     id: "podareast", name: "Podar Jumbo Kids (Santacruz East)", code: "PJE2024", logo: podarLogo.url,
-    sections: [{ name: "Tiny Tots", grades: TINY }],
+    sections: [{ name: "Tiny Tots", grades: TINY_NO_NURSERY }],
   },
 ];
 
