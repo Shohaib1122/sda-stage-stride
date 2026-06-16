@@ -31,7 +31,7 @@ const DEFAULT_PRIMARY = ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"];
 const DEFAULT_SECONDARY = ["Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"];
 
 const TINY_NO_NURSERY = ["Playgroup", "Junior KG", "Senior KG"];
-const KOTHARI_TINY = ["K1", "K2", "Nursery", "Junior KG", "Senior KG"];
+const KOTHARI_TINY = ["K1", "K2", "Nursery"];
 
 export const SCHOOLS: School[] = [
   {
