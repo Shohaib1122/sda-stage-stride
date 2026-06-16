@@ -49,12 +49,6 @@ export function AppHeader() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
-          <Link to="/dashboard" className="px-3 py-2 text-sm rounded-lg hover:bg-sidebar-accent transition-colors">
-            <span className="inline-flex items-center gap-2"><LayoutDashboard className="size-4" />Syllabus</span>
-          </Link>
-          <Link to="/analytics" className="px-3 py-2 text-sm rounded-lg hover:bg-sidebar-accent transition-colors">
-            <span className="inline-flex items-center gap-2"><BarChart3 className="size-4" />Analytics</span>
-          </Link>
           {sda.role === "admin" && (
             <Link to="/admin" className="px-3 py-2 text-sm rounded-lg hover:bg-sidebar-accent transition-colors">
               Admin
