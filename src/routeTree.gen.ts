@@ -20,6 +20,11 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminSyllabusRouteImport } from './routes/admin.syllabus'
+import { Route as AdminSchoolsRouteImport } from './routes/admin.schools'
+import { Route as AdminProfileRouteImport } from './routes/admin.profile'
+import { Route as AdminInstructorsRouteImport } from './routes/admin.instructors'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -76,10 +81,35 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSyllabusRoute = AdminSyllabusRouteImport.update({
+  id: '/syllabus',
+  path: '/syllabus',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSchoolsRoute = AdminSchoolsRouteImport.update({
+  id: '/schools',
+  path: '/schools',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProfileRoute = AdminProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInstructorsRoute = AdminInstructorsRouteImport.update({
+  id: '/instructors',
+  path: '/instructors',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/analytics': typeof AnalyticsRoute
   '/dashboard': typeof DashboardRoute
   '/month': typeof MonthRoute
@@ -89,10 +119,14 @@ export interface FileRoutesByFullPath {
   '/schools': typeof SchoolsRoute
   '/sections': typeof SectionsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/instructors': typeof AdminInstructorsRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/schools': typeof AdminSchoolsRoute
+  '/admin/syllabus': typeof AdminSyllabusRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/analytics': typeof AnalyticsRoute
   '/dashboard': typeof DashboardRoute
   '/month': typeof MonthRoute
@@ -102,11 +136,16 @@ export interface FileRoutesByTo {
   '/schools': typeof SchoolsRoute
   '/sections': typeof SectionsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/instructors': typeof AdminInstructorsRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/schools': typeof AdminSchoolsRoute
+  '/admin/syllabus': typeof AdminSyllabusRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/analytics': typeof AnalyticsRoute
   '/dashboard': typeof DashboardRoute
   '/month': typeof MonthRoute
@@ -116,6 +155,11 @@ export interface FileRoutesById {
   '/schools': typeof SchoolsRoute
   '/sections': typeof SectionsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/instructors': typeof AdminInstructorsRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/schools': typeof AdminSchoolsRoute
+  '/admin/syllabus': typeof AdminSyllabusRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,10 +175,14 @@ export interface FileRouteTypes {
     | '/schools'
     | '/sections'
     | '/sitemap.xml'
+    | '/admin/instructors'
+    | '/admin/profile'
+    | '/admin/schools'
+    | '/admin/syllabus'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin'
     | '/analytics'
     | '/dashboard'
     | '/month'
@@ -144,6 +192,11 @@ export interface FileRouteTypes {
     | '/schools'
     | '/sections'
     | '/sitemap.xml'
+    | '/admin/instructors'
+    | '/admin/profile'
+    | '/admin/schools'
+    | '/admin/syllabus'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -157,11 +210,16 @@ export interface FileRouteTypes {
     | '/schools'
     | '/sections'
     | '/sitemap.xml'
+    | '/admin/instructors'
+    | '/admin/profile'
+    | '/admin/schools'
+    | '/admin/syllabus'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRoute
   DashboardRoute: typeof DashboardRoute
   MonthRoute: typeof MonthRoute
@@ -252,12 +310,65 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/syllabus': {
+      id: '/admin/syllabus'
+      path: '/syllabus'
+      fullPath: '/admin/syllabus'
+      preLoaderRoute: typeof AdminSyllabusRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/schools': {
+      id: '/admin/schools'
+      path: '/schools'
+      fullPath: '/admin/schools'
+      preLoaderRoute: typeof AdminSchoolsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/profile': {
+      id: '/admin/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminProfileRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/instructors': {
+      id: '/admin/instructors'
+      path: '/instructors'
+      fullPath: '/admin/instructors'
+      preLoaderRoute: typeof AdminInstructorsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminInstructorsRoute: typeof AdminInstructorsRoute
+  AdminProfileRoute: typeof AdminProfileRoute
+  AdminSchoolsRoute: typeof AdminSchoolsRoute
+  AdminSyllabusRoute: typeof AdminSyllabusRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminInstructorsRoute: AdminInstructorsRoute,
+  AdminProfileRoute: AdminProfileRoute,
+  AdminSchoolsRoute: AdminSchoolsRoute,
+  AdminSyllabusRoute: AdminSyllabusRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   AnalyticsRoute: AnalyticsRoute,
   DashboardRoute: DashboardRoute,
   MonthRoute: MonthRoute,
@@ -271,13 +382,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

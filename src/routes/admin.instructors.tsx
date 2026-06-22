@@ -54,7 +54,7 @@ function InstructorsPage() {
   }
 
   function toggleStatus(ins: Instructor) {
-    const next = { ...ins, status: ins.status === "active" ? "inactive" : "active" as const };
+    const next: Instructor = { ...ins, status: ins.status === "active" ? "inactive" : "active" };
     upsert(next);
     setSelected(next);
     toast.success(`Instructor ${next.status === "active" ? "activated" : "deactivated"}`);
