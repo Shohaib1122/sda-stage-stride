@@ -1,5 +1,6 @@
 // Lightweight client-side store for the SDA portal (mock data, localStorage-backed).
 import { useEffect, useSyncExternalStore } from "react";
+import { api } from "./api-client";
 
 export type Role = "admin" | "instructor" | "principal";
 
@@ -242,6 +243,30 @@ export function useSDA() {
     saveSyllabus: (rows: SyllabusRow[]) => {
       const key = `${state.schoolId}-${state.section}-${state.grade}-${state.month}`;
       setState((s) => ({ ...s, syllabus: { ...s.syllabus, [key]: rows } }));
+    },
+    fetchSyllabusAsync: async (): Promise<SyllabusRow[]> => {
+      const key = `${state.schoolId}-${state.section}-${state.grade}-${state.month}`;
+      if (!state.schoolId || !state.section || !state.grade || !state.month) return [];
+      try {
+        const data = await api.syllabus.get(state.schoolId, state.section, state.grade, state.month, parseInt(state.month.split(" ")[1]) || 2026);
+        const rows = data.data?.entries?.length ? data.data.entries : seedRows(key);
+        setState((s) => ({ ...s, syllabus: { ...s.syllabus, [key]: rows } }));
+        return rows;
+      } catch (error) {
+        console.error(error);
+        return state.syllabus[key] || seedRows(key);
+      }
+    },
+    saveSyllabusAsync: async (rows: SyllabusRow[]) => {
+      const key = `${state.schoolId}-${state.section}-${state.grade}-${state.month}`;
+      if (!state.schoolId || !state.section || !state.grade || !state.month) return;
+      try {
+        await api.syllabus.save(state.schoolId, state.section, state.grade, state.month, parseInt(state.month.split(" ")[1]) || 2026, rows);
+        setState((s) => ({ ...s, syllabus: { ...s.syllabus, [key]: rows } }));
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     },
     reset: () => setState(() => initial),
   };

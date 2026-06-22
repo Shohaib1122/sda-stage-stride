@@ -33,11 +33,11 @@ function Dashboard() {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    if (sda.schoolId && sda.section && sda.month) {
-      setRows(sda.getSyllabus());
+    if (sda.schoolId && sda.section && sda.month && sda.grade) {
+      sda.fetchSyllabusAsync().then(setRows);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sda.schoolId, sda.section, sda.month]);
+  }, [sda.schoolId, sda.section, sda.month, sda.grade]);
 
   if (!sda.isHydrated) return <PortalLoading />;
   if (!school || !sda.section || !sda.month) return <Navigate to="/schools" />;
@@ -50,10 +50,14 @@ function Dashboard() {
     setRows((rs) => rs.map((r) => (r.id === id ? { ...r, [key]: value } : r)));
   }
 
-  function save() {
-    sda.saveSyllabus(rows);
-    setEditing(false);
-    toast.success("Syllabus saved successfully");
+  async function save() {
+    try {
+      await sda.saveSyllabusAsync(rows);
+      setEditing(false);
+      toast.success("Syllabus saved successfully");
+    } catch (error) {
+      toast.error("Failed to save syllabus to server");
+    }
   }
 
   function addRow() {
